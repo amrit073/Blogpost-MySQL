@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+</head>
+<script>
+    already = []
+    var fetchCom = async (id) => {
+        console.log(already);
+        if (already.includes(id)) { return } else {
+            already.push(id)
+            var response = await fetch(`/commentof${id}`)
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach(e => {
+                        console.log(e);
+                        initcom = document.getElementsByClassName(`${id}`)[0].innerHTML
+                        console.log(initcom);
+                        document.getElementsByClassName(`${id}`)[0].innerHTML = initcom + '<p>' + e.comment + '</p>'
+                    });
+                })
+        }
+    }
+
+
+
+</script>
+<style>
+    .togshow {
+        display: none;
+    }
+</style>
+
+<body class="container-fluid">
+    <link rel='script' href="./getcom.js">
+
+
+    <h5>BLOG POSTS</h5>
+    <a href='/create'><button class='btn btn-success position-absolute top-0 end-0'>
+            AddMyPost
+        </button></a>
+
+    <main>
+        <% result.forEach(function(result) { %>
+
+            <div class='card text-white bg-secondary mb-3'>
+
+                <div class="card-header" onclick="window.open('/post<%= result.id %>')">
+                    <%= result.title %>
+                </div>
+                <div class="card-body">
+                    <div class='card-title'>
+                        <%= result.body %>
+                    </div>
+
+
+                    <div class="card-text">
+                        by: <%= result.name %>
+                    </div>
+                    <form method="POST" action="/feedcom<%= result.id %>">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="comment">Comment</label>
+                            <div class="col-md-9">
+                                <input id="comment" name="comment" type="text" placeholder="Your comment"
+                                    class="form-control">
+                                <input id="commentid" name="commentid" type="text" class='d-none form-control'
+                                    value=<%=result._id %>>
+                                <input type="submit" class="btn btn-primary btn-lg" value="post">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div onclick="fetchCom('<%= result.id %>')">Comments:(click to show)</div>
+                <div class="<%=result.id %>">
+                    <p>heh</p>
+                </div>
+
+            </div>
+            </div>
+
+            <% }); %>
+    </main>
+
+    <footer>
+        <%- include('../partials/foot'); %>
+    </footer>
+
+</body>
+
+</html>

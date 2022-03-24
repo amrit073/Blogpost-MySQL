@@ -1,0 +1,49 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container">
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" method="post" action = "/save">
+          <fieldset>
+            <legend class="text-center">Create Post</legend>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="name">Name</label>
+              <div class="col-md-9">
+                <input required id="name" name="name" type="text" placeholder="Your name" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="title">Post title</label>
+              <div class="col-md-9">
+                <input required id="title" name="title" type="text" placeholder="Post title" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="Post">Your thoughts</label>
+              <div class="col-md-9">
+                <textarea required class="form-control" id="body" name="body" placeholder="Please enter your thoughts here..." rows="5"></textarea>
+              </div>
+            </div>
+    
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <input type="submit" class="btn btn-primary btn-lg" value="POST" formmethod="POST" ></button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+      </div>
+	</div>
+</div>
